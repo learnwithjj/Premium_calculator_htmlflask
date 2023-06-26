@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        * {
+        list-style-type: none;
+        outline: none;
+        text-decoration: none;
+        font-family: 'Lato', sans-serif;
+    }
+    html {
+        margin: 0px;
+        padding: 0px;
+        /*  */
+    }
+        #button
+        {
+            margin-top:25px;
+            padding:10px 25px 10px 25px;
+            border: 0.1px  ;
+            border-radius: 15px;
+            font-size:20px;
+            color: white;
+            cursor:pointer;
+            transition: 0.5s;
+            background-color: rgb(7, 7, 20);
+            border-color: wheat;
+        }
+        #button:hover{
+            box-shadow: 0 8px 16px 0 rgba(56, 1, 1, 0.2);
+        }
+        #forminput
+        {
+        border: 5px solid lightblue;
+        padding:15px 200px 15px 10px;
+        border-radius: 10px;
+        background-color: whitesmoke;
+        font-size: 15px;
+        font-weight: 600;
+        color: rgb(79, 55, 21);
+        }
+        #forminput:focus {
+  border-color: darkred;
+}
+
+    </style>
+    <body>
+        <div style="padding: 15%;background-color:rgb(191, 240, 207);">
+        <form onsubmit="return validate()" name="myform" action="/getac" method="post">
+        <h1>
+            Enter number of individuals
+        </h1>
+        <div><input id="forminput"  type="text" name="a"/></div>
+
+        <h1>
+            Enter number of children
+        </h1>
+        <div><input id="forminput" type="text" name="c"/></div>
+        <input id="button" type="submit" value="Add">
+    </form>
+</div>
+    </body>
+    <script>
+        function validate()
+        {
+            var a=document.myform.a.value;
+            var c=document.myform.c.value;
+            if(a=="" || c=="" || a==null ||c==null)
+            {
+                alert("Empty fields");
+                return false;
+            }
+            else{
+                console.log("yes")
+                window.location.href='/curd';
+                return true;
+            }
+        }
+    </script>
+    
+</html>

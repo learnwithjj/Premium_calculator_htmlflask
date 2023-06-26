@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Belanosima">
+    <style>
+        *{
+            margin: 0;
+            padding: 5px;
+            
+        }
+        .box {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          width: 40%;
+          font-weight: 600;
+          font-size: 20px;
+          border-radius: 10px;
+          color: rgb(112, 79, 35);
+        }
+        
+        .box:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+          
+        }
+        .curd
+        {
+            padding: 5%;
+            padding-top: 10px;
+            background-color:rgb(191, 240, 238) ;
+            width: 100%;
+            height: repeat(auto-fit, minmax(1000vh, 1fr));
+
+        }
+        #forminput
+        {
+        border: 5px solid lightblue;
+        margin-top: 5px;
+        margin-left: 10px;
+        padding:10px 90px 10px 10px;
+        border-radius: 10px;
+        background-color: whitesmoke;
+        font-size: 15px;
+        color: burlywood;
+        }
+        #forminput:focus{
+            border-color: brown;
+            outline: none;
+        }
+        #selectinput
+        {
+            border: 5px solid lightblue;
+            margin-top: 5px;
+            margin-left: 10px;
+            padding:10px 100px 10px 10px;
+            border-radius: 10px;
+            background-color: whitesmoke;
+            font-size: 15px;
+            font-weight: 700;
+            color: rgb(71, 129, 98);
+        }
+        #selectinput:focus{
+            border-color: brown;
+            outline: none;
+        }
+        #button
+        {
+            margin-top:5px;
+            padding:10px 25px 10px 25px;
+            border: 0.1px  ;
+            border-radius: 15px;
+            font-size:20px;
+            color: white;
+            cursor:pointer;
+            transition: 0.5s;
+            background-color: rgb(7, 7, 20);
+            border-color: wheat;
+            margin-top: 20px;
+        }
+        #button:hover{
+            box-shadow: 0 8px 16px 0 rgba(56, 1, 1, 0.2);
+        }
+        .grid-wrapper
+        {
+            
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
+            grid-auto-rows: 400px;
+            grid-auto-flow: dense;
+            padding: 10px;
+            
+        }
+        </style>
+    <body> 
+        <div class="curd">
+<h1 style="color: rgb(49, 6, 61);font-weight: 700;font-family: Belanosima;">Enter premium details </h1>
+
+<form action="/get" method="post">
+    <h2 style="margin-top:15px;font-weight:700;color: brown;">Enter details of Individuals</h2>
+    <div class="grid-wrapper">
+    {% for i in range(result[0]): %}
+    <div class="box">
+        <div style="color: rgb(101, 4, 4);">Individual  {{i+1}}</div>
+        <div>Enter age <input id="forminput" type="text" name="aage_{{i}}"/></div>
+        
+        <div>Choose city  <select id="selectinput" name="acity_{{i}}">
+            <option value="1">Tier-1</option>
+            <option value="2">Tier-2</option>
+        </select></div>
+
+
+        <div>Choose tenure <select id="selectinput" name="atenure_{{i}}">
+            <option value="1">1 year</option>
+            <option value="2">2 year</option>
+            <option></option>
+        </select></div>
+        <div>Choose sum insured: <select id="selectinput" name="asuminsured_{{i}}">
+            <option value="300000">3,00,000</option>
+            <option value="400000">4,00,000</option>
+            <option value="500000">5,00,000</option>
+        </select></div>
+    </div>
+    
+    {% endfor %}
+    </div>
+    <h2 style="margin-top:15px;font-weight:700;color: brown;">Enter details of children</h2>
+    <div class="grid-wrapper">
+    {% for j in range(result[1]): %}
+    <div class="box">
+        <div  style="color: rgb(101, 4, 4);">Child {{j+1}}</div>
+        <div>Enter age :<input id="forminput" type="text" name="cage_{{j}}"/></div>
+        
+        <div>Choose city : <select id="selectinput" name="ccity_{{j}}">
+            <option value="1">Tier-1</option>
+            <option value="2">Tier-2</option>
+        </select></div>
+        <div>Choose tenure :<select id="selectinput" name="ctenure_{{j}}">
+            <option value="1">1 year</option>
+            <option value="2">2 year</option>
+            <option></option>
+        </select></div>
+        <div>Choose sum insured: <select id="selectinput" name="csuminsured_{{j}}">
+            <option value="300000">3,00,000</option>
+            <option value="400000">4,00,000</option>
+            <option value="500000">5,00,000</option>
+        </select></div></div>
+    
+    </table>
+    {% endfor %}
+    </div>
+    <input id="button" type="submit"/>
+</form>
+</div>  
+    
+</body>
+</html>
