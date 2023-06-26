@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 from pymongo import MongoClient
 from mongopass import mongopass
 import subprocess as sp
-
+import itertools
  
 app=Flask(__name__)
 client=MongoClient(mongopass)
@@ -12,8 +12,7 @@ collection=db.names_col
 
 @app.route("/")
 def my_home():
-    date=sp.getoutput("date /t")
-    return render_template("home.html",date=date)
+    return render_template("home.html")
 
 
 @app.route("/count")
@@ -36,6 +35,7 @@ def getac():
 def get():
     
     x=[]
+    y=[]
     if request.method=='POST':
         for i in range(a):
             
@@ -45,6 +45,7 @@ def get():
             asumInsured=int(request.form.get(f"asuminsured_{i}"))
             cursor1=collection.find_one({"Age":aage,"TierID":acity,"Tenure":atenure,"SumInsured":asumInsured},{'Rate':1,'_id':0})
             x.append(cursor1['Rate'])
+            y.append(aage)
 
         for j in range(c):
             cage=int(request.form.get(f"cage_{j}"))
@@ -53,10 +54,17 @@ def get():
             csumInsured=int(request.form.get(f"csuminsured_{j}"))
             cursor2=collection.find_one({"Age":cage,"TierID":ccity,"Tenure":ctenure,"SumInsured":csumInsured},{'Rate':1,'_id':0})
             x.append(cursor2['Rate'])
+            y.append(cage)
 
         sum=0
-        for k in x:
-            sum+=k    
+        for (e,f) in  itertools.zip_longest(x,y):
+            if f!=max(y):
+                dis=e-0.5*e
+                sum+=dis
+            else:
+                sum+=e
+
+         
 
         
     return render_template("response.html",result=str(sum))
